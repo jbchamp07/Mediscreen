@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+page accueil
+
+<div class="row">
+
+    <div th:each="patient : ${patientsList}" class="col-md-4 my-1">
+
+
+            <p th:text= "${patient.firstName}"></p>
+
+
+    </div>
+
+</div>
+
+</body>
+</html>

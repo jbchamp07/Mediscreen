@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" action="#" th:action="@{/patient/update}" th:object="${patient}">
+    <div>
+        <label>Enter lastname</label>
+        <input type="text" name="familyInput" th:value="${patient.family}" >
+    </div>
+    <div>
+        <label>Enter firstname</label>
+        <input type="text" name="givenInput" th:value="${patient.given}">
+    </div>
+    <div>
+        <label>Enter sex</label>
+        <input type="radio" id="femaleId" name="sexInput"><label for="femaleId">Female</label>
+        <input type="radio" id="maleId" name="sexInput"><label for="maleId">Male</label>
+    </div>
+    <div>
+        <label>Enter date of birth</label>
+        <input type="date" name="dobInput" th:value="${patient.dob}">
+    </div>
+    <div>
+        <label>Enter phone number</label>
+        <input type="tel" name="phoneInput" th:value="${patient.phone}">
+    </div>
+    <div>
+        <label>Enter address</label>
+        <input type="text" name="addressInput" th:value="${patient.address}">
+    </div>
+    <div>
+        <input type="submit" value="Sauvegarder">
+    </div>
+</form>
+</body>
+</html>
