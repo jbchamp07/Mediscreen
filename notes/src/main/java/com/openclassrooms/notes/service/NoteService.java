@@ -15,7 +15,7 @@ public class NoteService {
         noteRepository.save(note);
     }
 
-    //TODO
+
     public Note noteById(int patientId){
         return noteRepository.findByPatientId(patientId).get();
     }
