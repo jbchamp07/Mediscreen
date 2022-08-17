@@ -20,9 +20,17 @@ public class DataService {
     private String risk = "Not calculated";
     private int nbTerms;
 
-    public String evaluating(int patientId){
+    public String evaluatingWithId(int patientId){
         notes = noteService.getNoteByPatientId(patientId);
         patient = patientService.getPatientById(patientId);
+        calculateTerms();
+        calculateRisk();
+
+        return risk;
+    }
+    public String evaluatingWithName(String familyName){
+        patient = patientService.getPatientByFamilyName(familyName);
+        notes = noteService.getNoteByPatientId(patient.getId());
         calculateTerms();
         calculateRisk();
 

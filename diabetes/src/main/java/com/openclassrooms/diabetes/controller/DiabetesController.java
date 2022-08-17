@@ -16,6 +16,10 @@ public class DiabetesController {
 
     @GetMapping("/assess")
     public String assess(@RequestParam int patientId){
-        return dataService.evaluating(patientId);
+        return dataService.evaluatingWithId(patientId);
+    }
+    @GetMapping("/assess")
+    public String assess(@RequestParam String familyName){
+        return dataService.evaluatingWithName(familyName);
     }
 }

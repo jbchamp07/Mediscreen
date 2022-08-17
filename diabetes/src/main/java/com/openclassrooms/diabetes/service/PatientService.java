@@ -14,5 +14,8 @@ public class PatientService {
     public Patient getPatientById(int patientId){
         return patientRepository.findById(patientId).get();
     }
+    public Patient getPatientByFamilyName(String familyName){
+        return patientRepository.findByFamily(familyName);
+    }
 
 }
