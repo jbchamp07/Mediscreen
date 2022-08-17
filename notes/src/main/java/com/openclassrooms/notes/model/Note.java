@@ -12,7 +12,6 @@ public class Note {
     @Id
     private int id;
     private int patientId;
-    private String comment;
-
+    private String note;
 
 }
