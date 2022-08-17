@@ -5,8 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class DiabetesController {
 
     @Autowired
@@ -15,6 +16,6 @@ public class DiabetesController {
 
     @GetMapping("/assess")
     public String assess(@RequestParam int patientId){
-        return dataService.toString();
+        return dataService.evaluating(patientId);
     }
 }

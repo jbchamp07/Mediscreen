@@ -17,36 +17,19 @@ public class DataService {
     private PatientService patientService;
     private List<Note> notes;
     private Patient patient;
-    private String risk = "None";
+    private String risk = "Not calculated";
     private int nbTerms;
 
     public String evaluating(int patientId){
         notes = noteService.getNoteByPatientId(patientId);
         patient = patientService.getPatientById(patientId);
         calculateTerms();
+        calculateRisk();
 
-        /*if(nbTerms == 0){
-            risk = "None";
-        }else if(nbTerms <= 2){
-            if(patient.getDob().getYear() > 30){
-                risk = "Borderline";
-            }
-        }else if(nbTerms == 3){
-            if( (patient.getSex().equals("M")) && (patient.getDob().getYear() > 30) ){
-                risk = "In Danger";
-            }
-        }else if(nbTerms == 4){
-            if(patient.getSex().equals("F")){
-                if(patient.getDob().getYear() < 30){
-                    risk = "In Danger";
-                }else{
-
-                }
-            }
-        }else if(nbTerms >= 5){
-
-        }*/
-
+        return risk;
+    }
+//TODO
+    private void calculateRisk() {
 
         switch (patient.getSex()){
             case "M":
@@ -68,12 +51,8 @@ public class DataService {
                         risk = "Early onset";
                     }
                 }
-
-
                 break;
             case "F":
-
-
                 if(patient.getDob().getYear() < 30){
                     if(nbTerms == 0){
                         risk = "None";
@@ -91,16 +70,11 @@ public class DataService {
                         risk = "Early onset";
                     }
                 }
-
-
                 break;
             default:
                 break;
         }
 
-
-
-        return risk;
     }
 
     private void calculateTerms() {
