@@ -22,4 +22,7 @@ public class DiabetesController {
     public String assess(@RequestParam String familyName){
         return dataService.evaluatingWithName(familyName);
     }
+
+
+
 }
