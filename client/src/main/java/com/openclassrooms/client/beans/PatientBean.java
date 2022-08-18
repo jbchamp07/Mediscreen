@@ -7,7 +7,10 @@ import java.util.Date;
 @Data
 public class PatientBean {
     private int id;
-    private String lastName;
-    private String firstName;
-    private Date dateOfBirth;
+    private String family;
+    private String given;
+    private Date dob;
+    private String address;
+    private String phone;
+    private String sex;
 }

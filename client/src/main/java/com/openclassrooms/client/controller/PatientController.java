@@ -17,7 +17,7 @@ public class PatientController {
         this.patientProxy = patientProxy;
     }
 
-    @GetMapping("/patient")
+    @GetMapping("/patient/list")
     public String accueil(Model model)
     {
         List<PatientBean> patientsList = patientProxy.PatientsList();
@@ -30,14 +30,14 @@ public class PatientController {
         return "patient/add";
     }
     @GetMapping("/patient/update")
-    public String updateForm(@PathVariable int patientId, Model model)
+    public String updateForm(@RequestParam int patientId, Model model)
     {
         PatientBean patient = patientProxy.getAPatient(patientId);
         model.addAttribute("patient",patient);
         return "patient/update";
     }
     @GetMapping("/patient/delete")
-    public String deleteForm(@PathVariable int patientId,Model model)
+    public String deleteForm(@RequestParam int patientId,Model model)
     {
         PatientBean patient = patientProxy.getAPatient(patientId);
         model.addAttribute("patient",patient);

@@ -5,6 +5,27 @@
     <title>Title</title>
 </head>
 <body>
+    <div>
+        <div>
+            <a th:href="@{/patient/add}">Add Patient</a>
+        </div>
+        <tr>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Date of birth</th>
+        </tr>
 
+        <tr th:each="patient : ${patientsList}" >
+            <div>
+                <td th:text="${patient.getFamily()}" ></td>
+                <td th:text="${patient.getGiven()}" ></td>
+                <td th:text="${patient.getDob()}" ></td>
+                <td> <a th:href="@{/note/delete}" th:value="${patient.getId()}" th:name="patientId" > See notes </a> </td>
+                <td> <a th:href="@{/patient/update}" th:value="${patient.getId()}" th:name="patientId" > Update </a> </td>
+                <td> <a th:href="@{/patient/delete}" th:value="${patient.getId()}" th:name="patientId" > Delete </a> </td>
+                <a th:href="@{/patient/update?patientId={id}(id=${patient.getId()})}" >Update</a>
+            </div>
+        </tr>
+    </div>
 </body>
 </html>

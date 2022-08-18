@@ -9,7 +9,7 @@ import java.util.List;
 @FeignClient(name = "microservice-patient", url = "localhost:9001")
 public interface PatientProxy {
 
-    @GetMapping(value = "/patient")
+    @GetMapping(value = "/patient/list")
     List<PatientBean> PatientsList();
 
     /*@GetMapping( value = "/patient/{id}")
@@ -22,8 +22,8 @@ public interface PatientProxy {
     void update(@RequestBody PatientBean patient);
 
     @DeleteMapping(value = "/patient/delete")
-    void delete(@PathVariable int patientId);
+    void delete(@RequestParam int patientId);
 
     @GetMapping(value = "/patient/update")
-    PatientBean getAPatient(@PathVariable int patientId);
+    PatientBean getAPatient(@RequestParam int patientId);
 }

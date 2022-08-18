@@ -16,12 +16,14 @@ public class PatientController {
     @Autowired
     private PatientService patientService;
 
-    /*@GetMapping("/patient")
-    public List<Patient> list() {
+    @GetMapping("/patient/list")
+    public List<Patient> PatientsList() {
         return patientService.patientList();
-    }*/
+    }
+
+    //TODO
     @GetMapping("/patient")
-    public Patient aPatient(@RequestParam int patientId) {
+    public Patient getAPatient(@RequestParam int patientId) {
         return patientService.getAPatientById(patientId);
     }
 
