@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-public class ClientController {
+public class PatientController {
 
     private final PatientProxy patientProxy;
 
-    public ClientController(PatientProxy patientProxy) {
+    public PatientController(PatientProxy patientProxy) {
         this.patientProxy = patientProxy;
     }
 
@@ -22,7 +22,7 @@ public class ClientController {
     {
         List<PatientBean> patientsList = patientProxy.PatientsList();
         model.addAttribute("patientsList",patientsList);
-        return "Accueil";
+        return "patient/list";
 
     }
 

@@ -12,15 +12,15 @@ public interface PatientProxy {
     @GetMapping(value = "/patient")
     List<PatientBean> PatientsList();
 
-    @GetMapping( value = "/patient/{id}")
-    PatientBean aPatient(@PathVariable("id") int id);
+    /*@GetMapping( value = "/patient/{id}")
+    PatientBean aPatient(@PathVariable("id") int id);*/
 
-    @PostMapping(value = "/patient")
+    @PostMapping(value = "/patient/add")
     void add(@RequestBody PatientBean patient);
 
-    @PutMapping(value = "/patient")
+    @PutMapping(value = "/patient/update")
     void update(@RequestBody PatientBean patient);
 
-    @DeleteMapping(value = "/patient")
+    @DeleteMapping(value = "/patient/delete")
     void delete(@PathVariable int patientId);
 }
