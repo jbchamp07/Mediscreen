@@ -54,14 +54,14 @@ public class NoteController {
     @PutMapping("note/update")
     public String update(@RequestBody NoteBean note, Model model){
         noteProxy.update(note);
-        model.addAttribute("message","note added");
+        model.addAttribute("message","note updated");
         return "note";
     }
 
     @DeleteMapping("note/delete")
     public String delete(@RequestBody NoteBean note, Model model){
         noteProxy.delete(note.getId());
-        model.addAttribute("message","note added");
+        model.addAttribute("message","note deleted");
         return "note";
     }
 

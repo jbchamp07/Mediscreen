@@ -23,4 +23,7 @@ public interface PatientProxy {
 
     @DeleteMapping(value = "/patient/delete")
     void delete(@PathVariable int patientId);
+
+    @GetMapping(value = "/patient/update")
+    PatientBean getAPatient(@PathVariable int patientId);
 }
