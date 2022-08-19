@@ -5,6 +5,35 @@
     <title>Title</title>
 </head>
 <body>
-
+    <form method="post" action="#" th:object="${patient}" th:action="@{/patient/add}">
+        <div>
+            <label>Enter lastname</label>
+            <input type="text" name="familyInput">
+        </div>
+        <div>
+            <label>Enter firstname</label>
+            <input type="text" name="givenInput">
+        </div>
+        <div>
+            <label>Enter sex</label>
+            <input type="radio" id="femaleId" value="F" name="sexInput"><label for="femaleId">Female</label>
+            <input type="radio" id="maleId" value="M" name="sexInput"><label for="maleId">Male</label>
+        </div>
+        <div>
+            <label>Enter date of birth</label>
+            <input type="date" name="dobInput">
+        </div>
+        <div>
+            <label>Enter phone number</label>
+            <input type="tel" name="phoneInput">
+        </div>
+        <div>
+            <label>Enter address</label>
+            <input type="text" name="addressInput">
+        </div>
+        <div>
+            <input type="submit" value="Sauvegarder">
+        </div>
+    </form>
 </body>
 </html>

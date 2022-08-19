@@ -21,10 +21,10 @@ public interface NoteProxy {
 
     //TODO
     @DeleteMapping(value = "/note/delete")
-    void delete(@PathVariable int patientId);
+    void delete(@RequestParam int patientId);
 
     @GetMapping(value = "/note/update")
-    NoteBean getNote(@PathVariable int patientId);
+    NoteBean getNote(@RequestParam int patientId);
 
     @GetMapping(value = "/note/delete")
     NoteBean getNoteId(int id);

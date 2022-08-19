@@ -20,10 +20,9 @@
                 <td th:text="${patient.getFamily()}" ></td>
                 <td th:text="${patient.getGiven()}" ></td>
                 <td th:text="${patient.getDob()}" ></td>
-                <td> <a th:href="@{/note/delete}" th:value="${patient.getId()}" th:name="patientId" > See notes </a> </td>
-                <td> <a th:href="@{/patient/update}" th:value="${patient.getId()}" th:name="patientId" > Update </a> </td>
-                <td> <a th:href="@{/patient/delete}" th:value="${patient.getId()}" th:name="patientId" > Delete </a> </td>
-                <a th:href="@{/patient/update?patientId={id}(id=${patient.getId()})}" >Update</a>
+                <td><a th:href="@{/note?patientId={id}(id=${patient.getId()})}" >See notes</a></td>
+                <td><a th:href="@{/patient/update?patientId={id}(id=${patient.getId()})}" >Update</a></td>
+                <td><a th:href="@{/patient/delete?patientId={id}(id=${patient.getId()})}" >Delete</a></td>
             </div>
         </tr>
     </div>
