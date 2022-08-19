@@ -45,7 +45,7 @@ public class PatientController {
     }
     //TODO ajouter message a l'html
     @PostMapping("/patient/delete")
-    public String add(@RequestBody PatientBean patient, Model model){
+    public String add(@ModelAttribute PatientBean patient, Model model){
         patientProxy.add(patient);
         model.addAttribute("message","patient added");
         return "patient";
