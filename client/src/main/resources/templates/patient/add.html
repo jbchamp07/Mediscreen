@@ -6,7 +6,7 @@
     <title>Title</title>
 </head>
 <body>
-    <form method="post" action="#" th:object="${patient}" th:action="@{/patient/add}" modelAttribute="patient" >
+    <form method="post" action="#" th:object="${patient}" th:action="@{/patient/add}" >
         <div>
             <label>Enter lastname</label>
             <input type="text" th:field="*{family}" name="familyInput">
