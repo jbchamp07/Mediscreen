@@ -28,4 +28,8 @@ public class NoteService {
     public void deleteNote(Note note) {
         noteRepository.delete(note);
     }
+
+    public Note getANote(int id) {
+        return noteRepository.findById(id).get();
+    }
 }

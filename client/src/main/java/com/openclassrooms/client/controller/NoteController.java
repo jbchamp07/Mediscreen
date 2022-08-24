@@ -21,43 +21,47 @@ public class NoteController {
         this.patientProxy = patientProxy;
     }
 
-    @GetMapping("/note")
-    public String noteList(Model model) {
-        List<NoteBean> notesList = noteProxy.getNotes();
+    @GetMapping("/notes")
+    public String noteList(@RequestParam int patientId, Model model) {
+        List<NoteBean> notesList = noteProxy.getNotes(patientId);
         model.addAttribute("notesList",notesList);
+        PatientBean patient = patientProxy.getAPatient(patientId);
+        model.addAttribute("patient",patient);
         return "note/list";
 
     }
     @GetMapping("/note/add")
-    public String addForm(int patientId, Model model) {
+    public String addForm(@RequestParam int patientId, Model model) {
         PatientBean patient = patientProxy.getAPatient(patientId);
         model.addAttribute("patient",patient);
+        model.addAttribute("note", new NoteBean());
         return "note/add";
     }
     @GetMapping("/note/update")
-    public String updateForm(@PathVariable int patientId, Model model) {
-        NoteBean note = noteProxy.getNote(patientId);
+    public String updateForm(@RequestParam int id, Model model) {
+        NoteBean note = noteProxy.updateNoteById(id);
         model.addAttribute("note",note);
         return "note/update";
 
     }
     @GetMapping("/note/delete")
-    public String deleteForm(@PathVariable int id, Model model) {
-        NoteBean note = noteProxy.getNoteId(id);
+    public String deleteForm(@RequestParam int id, Model model) {
+        NoteBean note = noteProxy.deleteNoteById(id);
         model.addAttribute("note",note);
         return "note/delete";
 
     }
     //TODO ajouter message a l'html
     @PostMapping("note/add")
-    public String add(@RequestBody NoteBean note, Model model){
+    public String add(@ModelAttribute NoteBean note, Model model){
         noteProxy.addNote(note);
         model.addAttribute("message","note added");
         return "note/list";
     }
 
+    //TODO
     @PutMapping("note/update")
-    public String update(@RequestBody NoteBean note, Model model){
+    public String update(@ModelAttribute NoteBean note, Model model){
         noteProxy.updateNote(note);
         model.addAttribute("message","note updated");
         return "note/list";

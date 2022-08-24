@@ -11,7 +11,7 @@ import java.util.List;
 public interface NoteProxy {
 
     @GetMapping(value = "/notes")
-    List<NoteBean> getNotes();
+    List<NoteBean> getNotes(@RequestParam int patientId);
 
     @PostMapping(value = "/note/add")
     void addNote(@RequestBody NoteBean patient);
@@ -25,8 +25,8 @@ public interface NoteProxy {
 
     //TODO
     @GetMapping(value = "/note/update")
-    NoteBean getNote(@RequestParam int patientId);
+    NoteBean updateNoteById(@RequestParam int id);
 
     @GetMapping(value = "/note/delete")
-    NoteBean getNoteId(int id);
+    NoteBean deleteNoteById(@RequestParam int id);
 }

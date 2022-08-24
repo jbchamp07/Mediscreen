@@ -33,4 +33,14 @@ public class NoteController {
         noteService.deleteNote(note);
     }
 
+    @GetMapping("note/update")
+    public Note updateNoteById(@RequestParam int id){
+        return noteService.getANote(id);
+    }
+
+    @GetMapping("note/delete")
+    public Note deleteNoteById(@RequestParam int id){
+        return noteService.getANote(id);
+    }
+
 }
