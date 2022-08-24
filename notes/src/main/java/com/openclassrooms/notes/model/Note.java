@@ -5,6 +5,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.Date;
+
 @Data
 @Document
 public class Note {
@@ -13,5 +15,6 @@ public class Note {
     private int id;
     private int patientId;
     private String note;
+    private Date date;
 
 }

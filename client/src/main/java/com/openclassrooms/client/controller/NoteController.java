@@ -3,6 +3,7 @@ package com.openclassrooms.client.controller;
 import com.openclassrooms.client.beans.NoteBean;
 import com.openclassrooms.client.beans.PatientBean;
 import com.openclassrooms.client.proxies.NoteProxy;
+import com.openclassrooms.client.proxies.PatientProxy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,20 +14,24 @@ import java.util.List;
 public class NoteController {
 
     private final NoteProxy noteProxy;
+    private final PatientProxy patientProxy;
 
-    public NoteController(NoteProxy noteProxy) {
+    public NoteController(NoteProxy noteProxy, PatientProxy patientProxy) {
         this.noteProxy = noteProxy;
+        this.patientProxy = patientProxy;
     }
 
     @GetMapping("/note")
     public String noteList(Model model) {
-        List<NoteBean> notesList = noteProxy.NotesList();
+        List<NoteBean> notesList = noteProxy.getNotes();
         model.addAttribute("notesList",notesList);
         return "note/list";
 
     }
     @GetMapping("/note/add")
-    public String addForm(Model model) {
+    public String addForm(int patientId, Model model) {
+        PatientBean patient = patientProxy.getAPatient(patientId);
+        model.addAttribute("patient",patient);
         return "note/add";
     }
     @GetMapping("/note/update")
@@ -46,23 +51,23 @@ public class NoteController {
     //TODO ajouter message a l'html
     @PostMapping("note/add")
     public String add(@RequestBody NoteBean note, Model model){
-        noteProxy.add(note);
+        noteProxy.addNote(note);
         model.addAttribute("message","note added");
-        return "note";
+        return "note/list";
     }
 
     @PutMapping("note/update")
     public String update(@RequestBody NoteBean note, Model model){
-        noteProxy.update(note);
+        noteProxy.updateNote(note);
         model.addAttribute("message","note updated");
-        return "note";
+        return "note/list";
     }
 
     @DeleteMapping("note/delete")
     public String delete(@RequestBody NoteBean note, Model model){
-        noteProxy.delete(note.getId());
+        noteProxy.deleteNote(note.getId());
         model.addAttribute("message","note deleted");
-        return "note";
+        return "note/list";
     }
 
 }

@@ -5,6 +5,10 @@ import com.openclassrooms.notes.repository.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.util.Date;
+import java.util.List;
+
 @Service
 public class NoteService {
 
@@ -12,12 +16,16 @@ public class NoteService {
     private NoteRepository noteRepository;
 
     public void saveNote(Note note){
+        note.setDate(Date.from(Instant.now()));
         noteRepository.save(note);
     }
 
 
-    public Note noteById(int patientId){
-        return noteRepository.findByPatientId(patientId).get();
+    public List<Note> noteById(int patientId){
+        return noteRepository.findByPatientId(patientId);
     }
 
+    public void deleteNote(Note note) {
+        noteRepository.delete(note);
+    }
 }

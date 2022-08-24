@@ -10,19 +10,20 @@ import java.util.List;
 @FeignClient(name = "microservice-note", url = "localhost:9002")
 public interface NoteProxy {
 
-    @GetMapping(value = "/note")
-    List<NoteBean> NotesList();
+    @GetMapping(value = "/notes")
+    List<NoteBean> getNotes();
 
     @PostMapping(value = "/note/add")
-    void add(@RequestBody NoteBean patient);
+    void addNote(@RequestBody NoteBean patient);
 
     @PutMapping(value = "/note/update")
-    void update(@RequestBody NoteBean patient);
+    void updateNote(@RequestBody NoteBean patient);
 
     //TODO
     @DeleteMapping(value = "/note/delete")
-    void delete(@RequestParam int patientId);
+    void deleteNote(@RequestParam int patientId);
 
+    //TODO
     @GetMapping(value = "/note/update")
     NoteBean getNote(@RequestParam int patientId);
 

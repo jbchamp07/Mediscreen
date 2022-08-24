@@ -48,20 +48,20 @@ public class PatientController {
     public String add(@PathVariable PatientBean patient, Model model){
         patientProxy.add(patient);
         model.addAttribute("message","patient added");
-        return "patient";
+        return "patient/list";
     }
 
     @PutMapping("/patient/update")
     public String update(@RequestBody PatientBean patient, Model model){
         patientProxy.update(patient);
         model.addAttribute("message","patient updated");
-        return "patient";
+        return "patient/list";
     }
 
     @DeleteMapping("/patient/delete")
     public String delete(@RequestBody PatientBean patient, Model model){
         patientProxy.delete(patient.getId());
         model.addAttribute("message","patient deleted");
-        return "patient";
+        return "patient/list";
     }
 }

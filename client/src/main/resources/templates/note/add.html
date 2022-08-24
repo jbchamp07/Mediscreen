@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-
+    <form method="post" action="#" th:object="${note}" th:action="@{/note/add}" >
+        <div>
+            <label>Patient : </label>
+            <label th:value="${patient.getFamily()}" ></label>
+            <label th:value="${patient.getGiven()}" ></label>
+        </div>
+        <div>
+            <label>Note : </label>
+            <input type="text"  th:field="*{note}" name="noteInput">
+            <input type="hidden" th:field="*{patientId}" th:value="${patient.getId()}">
+        </div>
+        <div>
+            <input type="submit" value="Save">
+        </div>
+    </form>
 </body>
 </html>

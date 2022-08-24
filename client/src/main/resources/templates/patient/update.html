@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-
+    <form method="post" action="#" th:object="${patient}" th:action="@{/patient/add}" >
+        <div>
+            <label>Enter lastname</label>
+            <input type="text" th:value="${patient.getFamily()}" th:field="*{family}" name="familyInput">
+        </div>
+        <div>
+            <label>Enter firstname</label>
+            <input type="text" th:value="${patient.getGiven()}" th:field="*{given}" name="givenInput">
+        </div>
+        <div>
+            <label>Enter sex</label>
+            <input type="radio" id="femaleId" th:field="*{sex}" value="F" name="sexInput"><label for="femaleId">Female</label>
+            <input type="radio" id="maleId" th:field="*{sex}" value="M" name="sexInput"><label for="maleId">Male</label>
+        </div>
+        <div>
+            <label>Enter date of birth</label>
+            <input type="date" th:value="${patient.getDob()}" th:field="*{dob}" name="dobInput">
+        </div>
+        <div>
+            <label>Enter phone number</label>
+            <input type="tel" th:value="${patient.getPhone()}" th:field="*{phone}" name="phoneInput">
+        </div>
+        <div>
+            <label>Enter address</label>
+            <input type="text" th:value="${patient.getAddress()}" th:field="*{address}" name="addressInput">
+        </div>
+        <div>
+            <input type="submit" value="Save">
+        </div>
+    </form>
 </body>
 </html>

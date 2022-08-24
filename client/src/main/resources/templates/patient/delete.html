@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<form th:method="delete" action="#" th:object="${patient}" th:action="@{/patient/delete}" >
 
+    <label>Are you sure to delete : </label>
+    <label type="text" th:value="${patient.getFamily()}" th:field="*{family}" name="familyInput"></label>
+    <label type="text" th:value="${patient.getGiven()}" th:field="*{given}" name="givenInput"></label>
+    <input type="submit" value="Delete">
+</form>
 </body>
 </html>
