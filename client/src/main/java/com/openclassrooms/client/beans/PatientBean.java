@@ -1,6 +1,7 @@
 package com.openclassrooms.client.beans;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -9,7 +10,8 @@ public class PatientBean {
     private int id;
     private String family;
     private String given;
-    private Date dob;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private String dob;
     private String address;
     private String phone;
     private String sex;

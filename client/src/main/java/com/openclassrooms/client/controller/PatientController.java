@@ -17,6 +17,13 @@ public class PatientController {
         this.patientProxy = patientProxy;
     }
 
+    @GetMapping("/")
+    public String accueilList(Model model)
+    {
+        List<PatientBean> patientsList = patientProxy.PatientsList();
+        model.addAttribute("patientsList",patientsList);
+        return "patient/list";
+    }
     @GetMapping("/patient/list")
     public String accueil(Model model)
     {
@@ -27,6 +34,7 @@ public class PatientController {
     @GetMapping("/patient/add")
     public String addForm(Model model)
     {
+        model.addAttribute("patient",new PatientBean());
         return "patient/add";
     }
     @GetMapping("/patient/update")
@@ -43,25 +51,31 @@ public class PatientController {
         model.addAttribute("patient",patient);
         return "patient/delete";
     }
-    //TODO ajouter message a l'html
-    @PostMapping("/patient/delete")
-    public String add(@PathVariable PatientBean patient, Model model){
+
+    @PostMapping("/patient/add")
+    public String add(@ModelAttribute PatientBean patient, Model model){
         patientProxy.add(patient);
         model.addAttribute("message","patient added");
+        List<PatientBean> patientsList = patientProxy.PatientsList();
+        model.addAttribute("patientsList",patientsList);
         return "patient/list";
     }
 
-    @PutMapping("/patient/update")
-    public String update(@RequestBody PatientBean patient, Model model){
+    @PostMapping("/patient/update")
+    public String update(@ModelAttribute PatientBean patient, Model model){
         patientProxy.update(patient);
         model.addAttribute("message","patient updated");
+        List<PatientBean> patientsList = patientProxy.PatientsList();
+        model.addAttribute("patientsList",patientsList);
         return "patient/list";
     }
 
-    @DeleteMapping("/patient/delete")
-    public String delete(@RequestBody PatientBean patient, Model model){
+    @PostMapping("/patient/delete")
+    public String delete(@ModelAttribute PatientBean patient, Model model){
         patientProxy.delete(patient.getId());
         model.addAttribute("message","patient deleted");
+        List<PatientBean> patientsList = patientProxy.PatientsList();
+        model.addAttribute("patientsList",patientsList);
         return "patient/list";
     }
 }

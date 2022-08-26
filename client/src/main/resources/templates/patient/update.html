@@ -6,7 +6,7 @@
     <title>Title</title>
 </head>
 <body>
-    <form method="post" action="#" th:object="${patient}" th:action="@{/patient/add}" >
+    <form method="post" action="#" th:object="${patient}" th:action="@{/patient/update}" >
         <div>
             <label>Enter lastname</label>
             <input type="text" th:value="${patient.getFamily()}" th:field="*{family}" name="familyInput">
@@ -31,6 +31,9 @@
         <div>
             <label>Enter address</label>
             <input type="text" th:value="${patient.getAddress()}" th:field="*{address}" name="addressInput">
+        </div>
+        <div>
+            <input type="hidden" th:value="${patient.getId()}" th:field="*{id}" name="idInput">
         </div>
         <div>
             <input type="submit" value="Save">

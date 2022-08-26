@@ -41,6 +41,8 @@ public class NoteController {
     public String updateForm(@RequestParam int id, Model model) {
         NoteBean note = noteProxy.updateNoteById(id);
         model.addAttribute("note",note);
+        PatientBean patient = patientProxy.getAPatient(note.getPatientId());
+        model.addAttribute("patient",patient);
         return "note/update";
 
     }
@@ -51,8 +53,8 @@ public class NoteController {
         return "note/delete";
 
     }
-    //TODO ajouter message a l'html
-    @PostMapping("note/add")
+
+    @PostMapping("/note/add")
     public String add(@ModelAttribute NoteBean note, Model model){
         noteProxy.addNote(note);
         model.addAttribute("message","note added");
@@ -60,15 +62,15 @@ public class NoteController {
     }
 
     //TODO
-    @PutMapping("note/update")
+    @PostMapping("/note/update")
     public String update(@ModelAttribute NoteBean note, Model model){
         noteProxy.updateNote(note);
         model.addAttribute("message","note updated");
         return "note/list";
     }
 
-    @DeleteMapping("note/delete")
-    public String delete(@RequestBody NoteBean note, Model model){
+    @PostMapping("/note/delete")
+    public String delete(@ModelAttribute NoteBean note, Model model){
         noteProxy.deleteNote(note.getId());
         model.addAttribute("message","note deleted");
         return "note/list";

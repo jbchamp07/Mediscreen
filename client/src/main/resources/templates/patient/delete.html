@@ -6,11 +6,12 @@
     <title>Title</title>
 </head>
 <body>
-<form th:method="delete" action="#" th:object="${patient}" th:action="@{/patient/delete}" >
+<form method="post" action="#" th:object="${patient}" th:action="@{/patient/delete}" >
 
     <label>Are you sure to delete : </label>
-    <label type="text" th:value="${patient.getFamily()}" th:field="*{family}" name="familyInput"></label>
-    <label type="text" th:value="${patient.getGiven()}" th:field="*{given}" name="givenInput"></label>
+    <label type="text" th:text="${patient.getFamily()}" th:field="*{family}" name="familyInput"></label>
+    <label type="text" th:text="${patient.getGiven()}" th:field="*{given}" name="givenInput"></label>
+    <input type="hidden" th:value="${patient.getId()}" th:field="*{id}" name="idInput">
     <input type="submit" value="Delete">
 </form>
 </body>

@@ -6,6 +6,7 @@
     <title>Title</title>
 </head>
 <body>
+<div th:text="${message}"></div>
 <div>
     <label>Patient : </label>
     <label th:text="${patient.getFamily()}" ></label>
@@ -19,5 +20,8 @@
         <td><a th:href="@{/note/delete?id={id}(id=${note.getId()})}" >Delete</a></td>
     </div>
 </tr>
+<div>
+    <a th:href="@{/note/add?patientId={id}(id=${patient.getId()})}" >Add new</a>
+</div>
 </body>
 </html>

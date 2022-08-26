@@ -16,7 +16,7 @@ public class NoteService {
     private NoteRepository noteRepository;
 
     public void saveNote(Note note){
-        note.setDate(Date.from(Instant.now()));
+        note.setDate(Date.from(Instant.now()).toString());
         noteRepository.save(note);
     }
 

@@ -17,7 +17,7 @@ public interface NoteProxy {
     void addNote(@RequestBody NoteBean patient);
 
     @PutMapping(value = "/note/update")
-    void updateNote(@RequestBody NoteBean patient);
+    void updateNote(@RequestBody NoteBean note);
 
     //TODO
     @DeleteMapping(value = "/note/delete")

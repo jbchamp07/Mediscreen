@@ -1,6 +1,7 @@
 package com.openclassrooms.client.beans;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -10,6 +11,7 @@ public class NoteBean {
     private int id;
     private int patientId;
     private String note;
-    private Date date;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private String date;
 
 }

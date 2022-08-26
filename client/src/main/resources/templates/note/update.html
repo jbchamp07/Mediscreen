@@ -6,16 +6,21 @@
     <title>Title</title>
 </head>
 <body>
-    <form method="post" action="#" th:object="${note}" th:action="@{/note/add}" >
+    <form method="post" action="#" th:object="${note}" th:action="@{/note/update}" >
         <div>
             <label>Patient : </label>
-            <label th:value="${patient.getFamily()}" ></label>
-            <label th:value="${patient.getGiven()}" ></label>
+            <label th:text="${patient.getFamily()}" ></label>
+            <label th:text="${patient.getGiven()}" ></label>
+        </div>
+        <div>
+            <label th:text="${note.getDate()}" ></label>
         </div>
         <div>
             <label>Note : </label>
             <input type="text"  th:field="*{note}" name="noteInput">
             <input type="hidden" th:field="*{patientId}" th:value="${patient.getId()}">
+            <input type="hidden" th:field="*{id}" th:value="${note.getId()}">
+            <input type="hidden" th:field="*{date}" th:value="${note.getDate()}">
         </div>
         <div>
             <input type="submit" value="Save">
