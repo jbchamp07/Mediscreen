@@ -8,8 +8,8 @@
 <body>
 <div>
     <label>Patient : </label>
-    <label th:value="${patient.getFamily()}" ></label>
-    <label th:value="${patient.getGiven()}" ></label>
+    <label th:text="${patient.getFamily()}" ></label>
+    <label th:text="${patient.getGiven()}" ></label>
 </div>
 <tr th:each="note : ${notesList}" >
     <div>
