@@ -9,7 +9,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="client" />
         <module name="notes" />
-        <module name="ui" />
         <module name="diabetes" />
         <module name="patient" />
       </profile>

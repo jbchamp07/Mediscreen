@@ -6,7 +6,6 @@
       <module fileurl="file://$PROJECT_DIR$/diabetes/diabetes.iml" filepath="$PROJECT_DIR$/diabetes/diabetes.iml" />
       <module fileurl="file://$PROJECT_DIR$/notes/notes.iml" filepath="$PROJECT_DIR$/notes/notes.iml" />
       <module fileurl="file://$PROJECT_DIR$/patient/patient.iml" filepath="$PROJECT_DIR$/patient/patient.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ui/ui.iml" filepath="$PROJECT_DIR$/ui/ui.iml" />
     </modules>
   </component>
 </project>

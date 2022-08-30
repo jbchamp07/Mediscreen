@@ -1,0 +1,32 @@
+version : "3"
+services:
+  mysql:
+    image : mysql:5.7
+    volumes:
+      - db_data/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD:
+      MYSQL_DATABASE: mediscreen
+      MYSQL_USER: root
+      MYSQL_PASSWORD:
+
+  patient:
+    depends_on:
+      - mysql
+    image: patient:latest
+    ports:
+      - "9001"
+    restart: always
+    environment:
+      PATIENT_DB_HOST: mysql:3306
+      PATIENT_DB_USER: root
+      PATIENT_DB_PASSWORD:
+      PATIENT_DB_NAME: mediscreen
+
+
+
+  application:
+    image: DockerFile
+    ports :
+      - "8080"

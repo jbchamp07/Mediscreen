@@ -13,14 +13,14 @@ public interface NoteProxy {
     @GetMapping(value = "/notes")
     List<NoteBean> getNotes(@RequestParam int patientId);
 
-    @PostMapping(value = "/note/add")
+    @PostMapping(value = "/notes/add")
     void addNote(@RequestBody NoteBean patient);
 
-    @PutMapping(value = "/note/update")
+    @PutMapping(value = "/notes/update")
     void updateNote(@RequestBody NoteBean note);
 
     //TODO
-    @DeleteMapping(value = "/note/delete")
+    @DeleteMapping(value = "/notes/delete")
     void deleteNote(@RequestParam int patientId);
 
     //TODO
