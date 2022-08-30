@@ -1,32 +1,66 @@
-version : "3"
+version: '3'
 services:
-  mysql:
-    image : mysql:5.7
-    volumes:
-      - db_data/mysql
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD:
-      MYSQL_DATABASE: mediscreen
-      MYSQL_USER: root
-      MYSQL_PASSWORD:
-
-  patient:
-    depends_on:
-      - mysql
-    image: patient:latest
+  discovery:
+    image:
     ports:
-      - "9001"
-    restart: always
+      - 8080:8080
+  config:
+    image:
+    volumes:
+      - ./config-data:/var/config-data
     environment:
-      PATIENT_DB_HOST: mysql:3306
-      PATIENT_DB_USER: root
-      PATIENT_DB_PASSWORD:
-      PATIENT_DB_NAME: mediscreen
+      - JAVA_OPTS=
+        -JB_SERVER=http://localhost:8080
+        -Dspring.cloud.config.server.native.searchLocations=/var/config-data
+    depends_on:
+      - discovery
+    ports:
+      - 8080:8080
 
 
+  client-service:
+    image:
+    environment:
+      - JAVA_OPTS=
+        -JB=http://localhost:8080
+    depends_on:
+      - discovery
+      - config
+    ports:
+      - 8080:8080
 
-  application:
-    image: DockerFile
-    ports :
-      - "8080"
+
+  diabetes-service:
+    image:
+    environment:
+      - JAVA_OPTS=
+        -JB_SERVER=http://localhost:9003
+    restart: on-failure
+    depends_on:
+      - discovery
+      - config
+    ports:
+      - 9003:9003
+
+  notes-service:
+    image:
+    environment:
+      - JAVA_OPTS=
+        -JB_SERVER=http://localhost:9002
+    depends_on:
+      - discovery
+      - config
+    ports:
+      - 9002:9002
+
+  patient-service:
+    image:
+    environment:
+      - JAVA_OPTS=
+        -JB_SERVER=http://localhost:9001
+    restart: on-failure
+    depends_on:
+      - discovery
+      - config
+    ports:
+      - 9001:9001
