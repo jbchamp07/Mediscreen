@@ -1,0 +1,133 @@
+version: '3'
+services:
+  databasemysql:
+    image: "mysql:latest"
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_DATABASE=mediscreen
+
+  databasemongodb:
+    image: "mongo:latest"
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD:
+
+  client:
+    image: client
+    build:
+      context: ./client
+      dockerfile: ./dockerfile
+    ports:
+      - "8080:8080"
+
+  diabetes:
+    image: diabetes
+    build:
+      context: ./diabetes
+      dockerfile: ./dockerfile
+    ports:
+      - "9003:9003"
+    depends_on:
+      - "databasemongodb"
+      - "databasemysql"
+
+  notes:
+    image: notes
+    build:
+      context: ./notes
+      dockerfile: ./dockerfile
+    ports:
+      - "9002:9002"
+    depends_on:
+      - "databasemongodb"
+
+  patient:
+    image: patient
+    build:
+      context: ./patient
+      dockerfile: ./dockerfile
+    ports:
+      - "9001:9001"
+    depends_on:
+      - "databasemysql"
+
+
+
+
+
+
+
+
+
+
+
+
+
+  discovery:
+    image:
+    ports:
+      - 8080:8080
+  config:
+    image:
+    volumes:
+      - ./config-data:/var/config-data
+    environment:
+      - JAVA_OPTS=
+        -JB_SERVER=http://localhost:8080
+        -Dspring.cloud.config.server.native.searchLocations=/var/config-data
+    depends_on:
+      - discovery
+    ports:
+      - 8080:8080
+
+
+  client-service:
+    image:
+    environment:
+      - JAVA_OPTS=
+        -JB=http://localhost:8080
+    depends_on:
+      - discovery
+      - config
+    ports:
+      - 8080:8080
+
+
+  diabetes-service:
+    image:
+    environment:
+      - JAVA_OPTS=
+        -JB_SERVER=http://localhost:9003
+    restart: on-failure
+    depends_on:
+      - discovery
+      - config
+    ports:
+      - 9003:9003
+
+  notes-service:
+    image:
+    environment:
+      - JAVA_OPTS=
+        -JB_SERVER=http://localhost:9002
+    depends_on:
+      - discovery
+      - config
+    ports:
+      - 9002:9002
+
+  patient-service:
+    image:
+    environment:
+      - JAVA_OPTS=
+        -JB_SERVER=http://localhost:9001
+    restart: on-failure
+    depends_on:
+      - discovery
+      - config
+    ports:
+      - 9001:9001
