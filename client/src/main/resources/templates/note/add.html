@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="./css/add.css">
 </head>
 <body>
     <form method="post" action="#" th:object="${note}" th:action="@{/note/add}" >
@@ -15,7 +16,7 @@
         <div>
             <label>Note : </label>
             <input type="text"  th:field="*{note}" name="noteInput">
-            <input type="hidden" th:field="*{patientId}" th:value="${patient.getId()}">
+            <input type="hidden" th:field="*{patientId}" th:value="${patient.getId()}" name="patientIdInput" >
         </div>
         <div>
             <input type="submit" value="Save">

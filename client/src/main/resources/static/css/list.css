@@ -1,0 +1,24 @@
+table, th, td {
+    border: 1px solid;
+}
+table {
+    width: 50%;
+    margin: auto;
+}
+td {
+    text-align: center;
+}
+tr:hover {
+    background-color: lightgrey;
+}
+th {
+    background-color: #04AA6D;
+    color: white;
+}
+#link {
+    background-color: lightgrey;
+    color: deepskyblue;
+    padding: 1em 1.5em;
+    border-radius: 50%;
+    margin-left: 45%;
+}

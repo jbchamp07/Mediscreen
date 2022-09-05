@@ -3,29 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="./css/list.css">
 </head>
 <body>
     <div th:text="${message}"></div>
     <div>
         <div>
-            <a th:href="@{/patient/add}">Add Patient</a>
+            <a id="link" th:href="@{/patient/add}">Add Patient</a>
         </div>
-        <tr>
-            <th>Last Name</th>
-            <th>First Name</th>
-            <th>Date of birth</th>
-        </tr>
+        <br/>
+        <br/>
+        <table>
+            <tr>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Date of birth</th>
+            </tr>
+            <tr th:each="patient : ${patientsList}" >
+                <div>
+                    <td th:text="${patient.getFamily()}" ></td>
+                    <td th:text="${patient.getGiven()}" ></td>
+                    <td th:text="${patient.getDob()}" ></td>
+                    <td><a th:href="@{/notes?patientId={id}(id=${patient.getId()})}" >See notes</a></td>
+                    <td><a th:href="@{/patient/update?patientId={id}(id=${patient.getId()})}" >Update</a></td>
+                    <td><a th:href="@{/patient/delete?patientId={id}(id=${patient.getId()})}" >Delete</a></td>
+                </div>
+            </tr>
+        </table>
 
-        <tr th:each="patient : ${patientsList}" >
-            <div>
-                <td th:text="${patient.getFamily()}" ></td>
-                <td th:text="${patient.getGiven()}" ></td>
-                <td th:text="${patient.getDob()}" ></td>
-                <td><a th:href="@{/notes?patientId={id}(id=${patient.getId()})}" >See notes</a></td>
-                <td><a th:href="@{/patient/update?patientId={id}(id=${patient.getId()})}" >Update</a></td>
-                <td><a th:href="@{/patient/delete?patientId={id}(id=${patient.getId()})}" >Delete</a></td>
-            </div>
-        </tr>
     </div>
 </body>
 </html>

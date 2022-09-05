@@ -1,6 +1,6 @@
 FROM openjdk:8-jdk-alpine
 
 ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} microservvce-client.jar
+COPY ${JAR_FILE} microservice-client.jar
 
 ENTRYPOINT ["java","-jar","/microservice-client.jar"]

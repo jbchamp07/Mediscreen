@@ -6,6 +6,16 @@
     <title>Title</title>
 </head>
 <body>
+<form method="post" action="#" th:object="${note}" th:action="@{/note/delete}" >
 
+    <label>Are you sure to delete : </label>
+    <label type="text" th:text="${note.getDate()}" th:field="*{date}"></label>
+    <label type="text" th:text="${note.getNote()}" th:field="*{note}"></label>
+    <input type="hidden" th:value="${note.getId()}" th:field="*{id}" name="idInput">
+    <input type="hidden" th:value="${note.getDate()}" th:field="*{date}" name="dateInput">
+    <input type="hidden" th:value="${note.getNote()}" th:field="*{note}" name="noteInput">
+    <input type="hidden" th:value="${note.getPatientId()}" th:field="*{patientId}" name="patientIdInput">
+    <input type="submit" value="Delete">
+</form>
 </body>
 </html>

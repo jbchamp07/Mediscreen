@@ -56,23 +56,43 @@ public class NoteController {
 
     @PostMapping("/note/add")
     public String add(@ModelAttribute NoteBean note, Model model){
+
         noteProxy.addNote(note);
         model.addAttribute("message","note added");
+
+        List<NoteBean> notesList = noteProxy.getNotes(note.getPatientId());
+        model.addAttribute("notesList",notesList);
+        PatientBean patient = patientProxy.getAPatient(note.getPatientId());
+        model.addAttribute("patient",patient);
+
         return "note/list";
     }
 
-    //TODO
     @PostMapping("/note/update")
     public String update(@ModelAttribute NoteBean note, Model model){
+
         noteProxy.updateNote(note);
         model.addAttribute("message","note updated");
+
+        List<NoteBean> notesList = noteProxy.getNotes(note.getPatientId());
+        model.addAttribute("notesList",notesList);
+        PatientBean patient = patientProxy.getAPatient(note.getPatientId());
+        model.addAttribute("patient",patient);
+
         return "note/list";
     }
 
     @PostMapping("/note/delete")
     public String delete(@ModelAttribute NoteBean note, Model model){
-        noteProxy.deleteNote(note.getId());
+
+        noteProxy.deleteNote(note);
         model.addAttribute("message","note deleted");
+
+        List<NoteBean> notesList = noteProxy.getNotes(note.getPatientId());
+        model.addAttribute("notesList",notesList);
+        PatientBean patient = patientProxy.getAPatient(note.getPatientId());
+        model.addAttribute("patient",patient);
+
         return "note/list";
     }
 

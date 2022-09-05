@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="css/list.css">
 </head>
 <body>
 <div th:text="${message}"></div>
@@ -12,16 +13,20 @@
     <label th:text="${patient.getFamily()}" ></label>
     <label th:text="${patient.getGiven()}" ></label>
 </div>
-<tr th:each="note : ${notesList}" >
-    <div>
-        <td th:text="${note.getDate()}" ></td>
-        <td th:text="${note.getNote()}" ></td>
-        <td><a th:href="@{/note/update?id={id}(id=${note.getId()})}" >Update</a></td>
-        <td><a th:href="@{/note/delete?id={id}(id=${note.getId()})}" >Delete</a></td>
-    </div>
-</tr>
+<table>
+    <tr th:each="note : ${notesList}" >
+        <div>
+            <td th:text="${note.getDate()}" ></td>
+            <td th:text="${note.getNote()}" ></td>
+            <td><a th:href="@{/note/update?id={id}(id=${note.getId()})}" >Update</a></td>
+            <td><a th:href="@{/note/delete?id={id}(id=${note.getId()})}" >Delete</a></td>
+        </div>
+    </tr>
+</table>
+<br/>
+<br/>
 <div>
-    <a th:href="@{/note/add?patientId={id}(id=${patient.getId()})}" >Add new</a>
+    <a id="link" th:href="@{/note/add?patientId={id}(id=${patient.getId()})}" >Add new</a>
 </div>
 </body>
 </html>
