@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./css/add.css">
 </head>
 <body>
+<div id="formadd">
     <form method="post" action="#" th:object="${note}" th:action="@{/note/add}" >
         <div>
             <label>Patient : </label>
@@ -22,5 +23,7 @@
             <input type="submit" value="Save">
         </div>
     </form>
+</div>
+
 </body>
 </html>

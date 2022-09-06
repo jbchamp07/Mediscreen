@@ -1,3 +1,10 @@
 div{
-    margin: auto;
+    text-align: center;
+    zoom: 500%;
+}
+#result{
+    background-color: black;
+    color: white;
+    padding: 1%;
+    border-radius: 20px;
 }

@@ -1,8 +1,20 @@
-form{
-    horiz-align: center;
-    vertical-align: center;
+
+body {
+    text-align: center;
+
+}
+#formadd {
+
+    border-radius: 5%;
+    border: solid;
+    width: 15%;
+    padding: 1%;
     margin: auto;
-    border-width: 1px;
-    border-color: black;
-    border-radius: 10%;
+    background-color: lightgrey;
+}
+form{
+    text-align: left;
+}
+input,label{
+    margin-left: 0;
 }

@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="../css/add.css" th:href="@{/css/add.css}">
 </head>
 <body>
+<div id="formadd">
     <form method="post" action="#" th:object="${patient}" th:action="@{/patient/update}" >
         <div>
             <label>Enter lastname</label>
@@ -39,5 +41,7 @@
             <input type="submit" value="Save">
         </div>
     </form>
+</div>
+
 </body>
 </html>

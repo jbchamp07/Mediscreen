@@ -4,17 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../../css/add.css">
+    <link rel="stylesheet" href="../css/add.css" th:href="@{/css/add.css}">
 </head>
 <body>
+<div id="formadd">
     <form method="post" action="#" th:object="${patient}" th:action="@{/patient/add}" >
         <div>
             <label>Enter lastname</label>
-            <input type="text" th:field="*{family}" name="familyInput">
+            <input type="text" th:field="*{family}" required name="familyInput">
         </div>
         <div>
             <label>Enter firstname</label>
-            <input type="text" th:field="*{given}" name="givenInput">
+            <input type="text" th:field="*{given}" required name="givenInput">
         </div>
         <div>
             <label>Enter sex</label>
@@ -23,19 +24,21 @@
         </div>
         <div>
             <label>Enter date of birth</label>
-            <input type="date" th:field="*{dob}" name="dobInput">
+            <input type="date" th:field="*{dob}" required name="dobInput">
         </div>
         <div>
             <label>Enter phone number</label>
-            <input type="tel" th:field="*{phone}" name="phoneInput">
+            <input type="tel" th:field="*{phone}" required name="phoneInput">
         </div>
         <div>
             <label>Enter address</label>
-            <input type="text" th:field="*{address}" name="addressInput">
+            <input type="text" th:field="*{address}" required name="addressInput">
         </div>
         <div>
             <input type="submit" value="Save">
         </div>
     </form>
+</div>
+
 </body>
 </html>

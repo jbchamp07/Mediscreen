@@ -4,18 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="./css/diabetes.css">
+    <link rel="stylesheet" href="./css/diabetes.css" th:href="@{/css/diabetes.css}">
 </head>
 <body>
     <div>
         <label>Diabete result for : </label>
         <label th:text="${patient.getFamily()}"></label>
         <label> </label>
-        <label th:text="${patient.getGiven()}"></label>
+        <label class="patient" th:text="${patient.getGiven()}"></label>
     </div>
+    <br/>
     <div>
         <label>Result : </label>
-        <label th:text="${result}"></label>
+        <label id="result" th:text="${result}"></label>
     </div>
 </body>
 </html>
