@@ -21,7 +21,7 @@ public class PatientController {
         return patientService.patientList();
     }
 
-    //TODO
+
     @GetMapping("/patient")
     public Patient getAPatient(@RequestParam int patientId) {
         return patientService.getAPatientById(patientId);
@@ -41,5 +41,10 @@ public class PatientController {
     public void delete(@RequestParam int patientId) {
         Patient patient = patientService.getAPatientById(patientId);
         patientService.deletePatient(patient);
+    }
+
+    @GetMapping("/patientfamily")
+    public Patient patientByFamily(@RequestParam String familyName){
+        return patientService.patientByFamily(familyName);
     }
 }

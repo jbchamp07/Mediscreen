@@ -4,6 +4,7 @@ import com.openclassrooms.patient.model.Patient;
 import com.openclassrooms.patient.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -31,6 +32,10 @@ public class PatientService {
 
     public void deletePatient(Patient patient){
         patientRepository.delete(patient);
+    }
+
+    public Patient patientByFamily(String familyName){
+        return patientRepository.findByFamily(familyName);
     }
 
 }

@@ -2,6 +2,8 @@ package com.openclassrooms.diabetes.service;
 
 import com.openclassrooms.diabetes.model.Note;
 import com.openclassrooms.diabetes.model.Patient;
+import com.openclassrooms.diabetes.proxies.NoteProxy;
+import com.openclassrooms.diabetes.proxies.PatientProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,31 +14,31 @@ import java.util.List;
 public class DataService {
 
     @Autowired
-    private NoteService noteService;
+    private NoteProxy noteProxy;
     @Autowired
-    private PatientService patientService;
+    private PatientProxy patientProxy;
     private List<Note> notes;
     private Patient patient;
     private String risk = "Not calculated";
     private int nbTerms;
 
     public String evaluatingWithId(int patientId){
-        notes = noteService.getNoteByPatientId(patientId);
-        patient = patientService.getPatientById(patientId);
+        notes = noteProxy.getNotes(patientId);
+        patient = patientProxy.getAPatient(patientId);
         calculateTerms();
         calculateRisk();
 
         return risk;
     }
     public String evaluatingWithName(String familyName){
-        patient = patientService.getPatientByFamilyName(familyName);
-        notes = noteService.getNoteByPatientId(patient.getId());
+        patient = patientProxy.patientByFamily(familyName);
+        notes = noteProxy.getNotes(patient.getId());
         calculateTerms();
         calculateRisk();
 
         return risk;
     }
-//TODO
+
     private void calculateRisk() {
 
         switch (patient.getSex()){
