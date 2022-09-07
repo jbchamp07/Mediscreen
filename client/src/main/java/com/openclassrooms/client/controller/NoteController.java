@@ -56,7 +56,7 @@ public class NoteController {
 
     @PostMapping("/note/add")
     public String add(@ModelAttribute NoteBean note, Model model){
-
+        //TODO set id ai
         noteProxy.addNote(note);
         model.addAttribute("message","note added");
 

@@ -43,17 +43,19 @@ public class DataService {
             case "M":
 
                 if(patient.getDob().getYear() < 30){
-                    if(nbTerms == 0){
+                    if(nbTerms < 3){
                         risk = "None";
-                    }else if(nbTerms == 3){
+                    }else if(nbTerms < 5){
                         risk = "In Danger";
                     }else if(nbTerms == 5){
                         risk = "Early onset";
                     }
                 }else{
-                    if(nbTerms == 2){
+                    if(nbTerms < 2){
+                        risk = "None";
+                    }else if(nbTerms < 6){
                         risk = "Borderline";
-                    }else if(nbTerms == 6){
+                    }else if(nbTerms < 8){
                         risk = "In Danger";
                     }else if(nbTerms >= 8){
                         risk = "Early onset";
@@ -62,17 +64,19 @@ public class DataService {
                 break;
             case "F":
                 if(patient.getDob().getYear() < 30){
-                    if(nbTerms == 0){
+                    if(nbTerms < 4){
                         risk = "None";
-                    }else if(nbTerms == 4){
+                    }else if(nbTerms < 7){
                         risk = "In Danger";
-                    }else if(nbTerms == 7){
+                    }else if(nbTerms >= 7){
                         risk = "Early onset";
                     }
                 }else{
-                    if(nbTerms == 2){
+                    if(nbTerms < 2){
+                        risk = "None";
+                    }else if(nbTerms < 6){
                         risk = "Borderline";
-                    }else if(nbTerms == 6){
+                    }else if(nbTerms < 8){
                         risk = "In Danger";
                     }else if(nbTerms >= 8){
                         risk = "Early onset";
