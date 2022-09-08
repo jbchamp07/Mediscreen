@@ -25,7 +25,7 @@ public class NoteController {
 
     @PutMapping("/notes/update")
     public void updateNote(@RequestBody Note note){
-        noteService.saveNote(note);
+        noteService.updateNote(note);
     }
 
     @DeleteMapping("/notes/delete")

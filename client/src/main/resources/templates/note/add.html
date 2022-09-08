@@ -17,7 +17,6 @@
         <div>
             <label>Note : </label>
             <input type="text"  th:field="*{note}" name="noteInput">
-            <label th:text="${patient.getId()}" ></label>
             <input type="hidden" th:value="${patient.getId()}" id="patientId" name="patientId" >
         </div>
         <div>
