@@ -28,7 +28,7 @@ public class PatientServiceTest {
     private PatientRepository patientRepository;
     private Patient patient;
 
-    @Before()
+    @Before
     public void start(){
 
         patient = new Patient();
