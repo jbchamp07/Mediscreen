@@ -7,6 +7,7 @@ import com.openclassrooms.diabetes.proxies.PatientProxy;
 import com.openclassrooms.diabetes.service.DataService;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,16 +33,19 @@ public class DataServiceTest {
 
     @Before
     public void start(){
+        note = new Note();
+        patient = new Patient();
         note.setId(2);
         note.setNote("noteTest");
         note.setPatientId(1);
         patient.setId(1);
         patient.setAddress("addressTest");
         patient.setFamily("familyTest");
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    public void evaluatingWithIdTest(){
+    public void evaluatingWithIdTestNone(){
 
         List<Note> list = new ArrayList<>();
         list.add(note);
@@ -52,7 +56,7 @@ public class DataServiceTest {
     }
 
     @Test
-    public void evaluatingWithNameTest(){
+    public void evaluatingWithNameTestNone(){
 
         List<Note> list = new ArrayList<>();
         list.add(note);
@@ -62,5 +66,28 @@ public class DataServiceTest {
 
     }
 
+    @Test
+    public void evaluatingWithIdTestEarlyOnset(){
+
+        List<Note> list = new ArrayList<>();
+        note.setNote("Vertige Vertige Vertige Vertige Vertige Vertige Vertige Vertige Vertige Vertige");
+        list.add(note);
+        when(noteProxy.getNotes(1)).thenReturn(list);
+        when(patientProxy.getAPatient(patient.getId())).thenReturn(patient);
+        assertEquals("None",dataService.evaluatingWithId(patient.getId()));
+
+    }
+
+    @Test
+    public void evaluatingWithNameTestEarlyOnset(){
+
+        List<Note> list = new ArrayList<>();
+        note.setNote("Vertige Vertige Vertige Vertige Vertige Vertige Vertige Vertige Vertige Vertige");
+        list.add(note);
+        when(noteProxy.getNotes(1)).thenReturn(list);
+        when(patientProxy.patientByFamily(patient.getFamily())).thenReturn(patient);
+        assertEquals("None",dataService.evaluatingWithId(patient.getId()));
+
+    }
 
 }

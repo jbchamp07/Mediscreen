@@ -27,6 +27,7 @@ public class NoteServiceTest {
 
     @Before
     public void start(){
+        note = new Note();
         note.setId(1);
         note.setNote("noteTest");
         note.setDate("01-01-2000");
@@ -38,6 +39,7 @@ public class NoteServiceTest {
     public void getNextSequenceTest(){
 
     }
+
     @Test
     public void saveNoteTest(){
 
