@@ -7,6 +7,7 @@ import com.openclassrooms.client.proxies.PatientProxy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -55,8 +56,8 @@ public class NoteController {
     }
 
     @PostMapping("/note/add")
-    public String add(@ModelAttribute NoteBean note, Model model){
-        //TODO set id ai
+    public ModelAndView add(@ModelAttribute NoteBean note, Model model){
+
         noteProxy.addNote(note);
         model.addAttribute("message","note added");
 
@@ -64,8 +65,8 @@ public class NoteController {
         model.addAttribute("notesList",notesList);
         PatientBean patient = patientProxy.getAPatient(note.getPatientId());
         model.addAttribute("patient",patient);
-
-        return "note/list";
+        //TODO faire sa partout
+        return new ModelAndView("redirect:/notes?patientId=25");
     }
 
     @PostMapping("/note/update")

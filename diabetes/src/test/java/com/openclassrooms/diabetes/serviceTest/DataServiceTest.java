@@ -41,6 +41,8 @@ public class DataServiceTest {
         patient.setId(1);
         patient.setAddress("addressTest");
         patient.setFamily("familyTest");
+        patient.setSex("M");
+        patient.setDob("01-01-2000");
         MockitoAnnotations.openMocks(this);
     }
 

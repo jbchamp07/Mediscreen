@@ -7,6 +7,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=
       - MYSQL_DATABASE=mediscreen
+    restart: always
 
   databasemongodb:
     image: "mongo:latest"
@@ -15,6 +16,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD:
+    restart: always
 
   client:
     image: client
@@ -23,6 +25,7 @@ services:
       dockerfile: ./dockerfile
     ports:
       - "8080:8080"
+    restart: always
 
   diabetes:
     image: diabetes
@@ -31,9 +34,7 @@ services:
       dockerfile: ./dockerfile
     ports:
       - "9003:9003"
-    depends_on:
-      - "databasemongodb"
-      - "databasemysql"
+    restart: always
 
   notes:
     image: notes
@@ -44,6 +45,7 @@ services:
       - "9002:9002"
     depends_on:
       - "databasemongodb"
+    restart: always
 
   patient:
     image: patient
@@ -54,4 +56,4 @@ services:
       - "9001:9001"
     depends_on:
       - "databasemysql"
-
+    restart: always
