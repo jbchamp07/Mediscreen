@@ -64,7 +64,7 @@ public class DataServiceTest {
         list.add(note);
         when(noteProxy.getNotes(1)).thenReturn(list);
         when(patientProxy.patientByFamily(patient.getFamily())).thenReturn(patient);
-        assertEquals("None",dataService.evaluatingWithId(patient.getId()));
+        assertEquals("None",dataService.evaluatingWithName(patient.getFamily()));
 
     }
 
@@ -72,11 +72,11 @@ public class DataServiceTest {
     public void evaluatingWithIdTestEarlyOnset(){
 
         List<Note> list = new ArrayList<>();
-        note.setNote("Vertige Vertige Vertige Vertige Vertige Vertige Vertige Vertige Vertige Vertige");
+        note.setNote("Vertige Microalbumine Taille Poids Fumeur Anormal Cholestérol Rechute Réaction Anticorps");
         list.add(note);
         when(noteProxy.getNotes(1)).thenReturn(list);
         when(patientProxy.getAPatient(patient.getId())).thenReturn(patient);
-        assertEquals("None",dataService.evaluatingWithId(patient.getId()));
+        assertEquals("Early onset",dataService.evaluatingWithId(patient.getId()));
 
     }
 
@@ -84,11 +84,11 @@ public class DataServiceTest {
     public void evaluatingWithNameTestEarlyOnset(){
 
         List<Note> list = new ArrayList<>();
-        note.setNote("Vertige Vertige Vertige Vertige Vertige Vertige Vertige Vertige Vertige Vertige");
+        note.setNote("Vertige Microalbumine Taille Poids Fumeur Anormal Cholestérol Rechute Réaction Anticorps");
         list.add(note);
         when(noteProxy.getNotes(1)).thenReturn(list);
         when(patientProxy.patientByFamily(patient.getFamily())).thenReturn(patient);
-        assertEquals("None",dataService.evaluatingWithId(patient.getId()));
+        assertEquals("Early onset",dataService.evaluatingWithName(patient.getFamily()));
 
     }
 

@@ -5,18 +5,20 @@ services:
     ports:
       - "3306:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=
       - MYSQL_DATABASE=mediscreen
+      - MYSQL_PASSWORD=root
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
     restart: always
+    volumes:
+      - db_data:/var/liv/mysql
 
   databasemongodb:
     image: "mongo:latest"
     ports:
       - "27017:27017"
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD:
     restart: always
+    volumes:
+      - db_data:/var/liv/mongodb
 
   client:
     image: client
@@ -57,3 +59,6 @@ services:
     depends_on:
       - "databasemysql"
     restart: always
+
+volumes:
+  db_data: {}

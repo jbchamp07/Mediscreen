@@ -7,7 +7,9 @@ import com.openclassrooms.diabetes.proxies.PatientProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -41,15 +43,17 @@ public class DataService {
 
     private void calculateRisk() {
 
+        int age = Date.from(Instant.now()).getYear() + 1900 - Integer.valueOf(patient.getDob().substring(6));
+
         switch (patient.getSex()){
             case "M":
-
-                if(patient.getDob().getYear() < 30){
+                //TODO
+                if(age < 30){
                     if(nbTerms < 3){
                         risk = "None";
                     }else if(nbTerms < 5){
                         risk = "In Danger";
-                    }else if(nbTerms == 5){
+                    }else if(nbTerms >= 5){
                         risk = "Early onset";
                     }
                 }else{
@@ -65,7 +69,7 @@ public class DataService {
                 }
                 break;
             case "F":
-                if(patient.getDob().getYear() < 30){
+                if(age < 30){
                     if(nbTerms < 4){
                         risk = "None";
                     }else if(nbTerms < 7){
