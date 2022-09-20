@@ -1,15 +1,13 @@
-package com.openclassrooms.patient.serviceTest;
+package com.openclassrooms.patient.service;
 
 import com.openclassrooms.patient.model.Patient;
 import com.openclassrooms.patient.repository.PatientRepository;
-import com.openclassrooms.patient.service.PatientService;
-import org.junit.Before;
-import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -20,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class PatientServiceTest {
 
     @InjectMocks
@@ -28,7 +27,7 @@ public class PatientServiceTest {
     private PatientRepository patientRepository;
     private Patient patient;
 
-    @Before
+    @BeforeAll
     public void start(){
 
         patient = new Patient();
@@ -44,15 +43,7 @@ public class PatientServiceTest {
 
     }
 
-    @BeforeEach
-    public void setup(){
 
-    }
-
-    @AfterAll
-    public void end(){
-
-    }
 
     @Test
     public void getAPatientByIdTest(){

@@ -5,12 +5,13 @@ import com.openclassrooms.diabetes.model.Patient;
 import com.openclassrooms.diabetes.proxies.NoteProxy;
 import com.openclassrooms.diabetes.proxies.PatientProxy;
 import com.openclassrooms.diabetes.service.DataService;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.junit.Before;
-import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class DataServiceTest {
 
     @InjectMocks
@@ -31,7 +33,7 @@ public class DataServiceTest {
     private Note note;
 
 
-    @Before
+    @BeforeAll
     public void start(){
         note = new Note();
         patient = new Patient();

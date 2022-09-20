@@ -3,15 +3,10 @@ package com.openclassrooms.diabetes.model;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.util.Date;
 
-@Entity
 @Data
 public class Patient {
 
-    @Id
     private int id;
     private String family;
     private String given;
