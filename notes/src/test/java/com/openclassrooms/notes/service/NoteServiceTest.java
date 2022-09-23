@@ -1,14 +1,14 @@
-package com.openclassrooms.notes.serviceTest;
+package com.openclassrooms.notes.service;
 
 import com.openclassrooms.notes.model.Note;
 import com.openclassrooms.notes.repository.NoteRepository;
-import com.openclassrooms.notes.service.NoteService;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.junit.Before;
-import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,15 +17,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class NoteServiceTest {
-/*
+
     @InjectMocks
     private NoteService noteService;
     @Mock
     private NoteRepository noteRepository;
     private Note note;
 
-    @Before
+    @BeforeAll
     public void start(){
         note = new Note();
         note.setId(1);
@@ -42,7 +43,7 @@ public class NoteServiceTest {
 
     @Test
     public void saveNoteTest(){
-
+        //TODO
         List<Note> list = new ArrayList<>();
         list.add(note);
 
@@ -50,6 +51,8 @@ public class NoteServiceTest {
         noteService.saveNote(note);
         when(noteRepository.findByPatientId(2)).thenReturn(list);
         assertEquals("noteTest",noteService.noteById(note.getPatientId()).get(0).getNote());
+
+
     }
 
     @Test
@@ -89,8 +92,8 @@ public class NoteServiceTest {
 
         when(noteRepository.findById(note.getId())).thenReturn(java.util.Optional.ofNullable(note));
         noteService.getANote(note.getId());
-        assertEquals("noteTest",noteService.getANote(note.getPatientId()).getNote());
+        assertEquals("noteTest",noteService.getANote(note.getId()).getNote());
 
     }
-*/
+
 }

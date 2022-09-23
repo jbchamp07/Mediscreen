@@ -66,11 +66,11 @@ public class NoteController {
         PatientBean patient = patientProxy.getAPatient(note.getPatientId());
         model.addAttribute("patient",patient);
         //TODO faire sa partout
-        return new ModelAndView("redirect:/notes?patientId=25");
+        return new ModelAndView("redirect:/notes?patientId=" + note.getPatientId());
     }
 
     @PostMapping("/note/update")
-    public String update(@ModelAttribute NoteBean note, Model model){
+    public ModelAndView update(@ModelAttribute NoteBean note, Model model){
 
         noteProxy.updateNote(note);
         model.addAttribute("message","note updated");
@@ -80,11 +80,11 @@ public class NoteController {
         PatientBean patient = patientProxy.getAPatient(note.getPatientId());
         model.addAttribute("patient",patient);
 
-        return "note/list";
+        return new ModelAndView("redirect:/notes?patientId=" + note.getPatientId());
     }
 
     @PostMapping("/note/delete")
-    public String delete(@ModelAttribute NoteBean note, Model model){
+    public ModelAndView delete(@ModelAttribute NoteBean note, Model model){
 
         noteProxy.deleteNote(note);
         model.addAttribute("message","note deleted");
@@ -94,7 +94,7 @@ public class NoteController {
         PatientBean patient = patientProxy.getAPatient(note.getPatientId());
         model.addAttribute("patient",patient);
 
-        return "note/list";
+        return new ModelAndView("redirect:/notes?patientId=" + note.getPatientId());
     }
 
 }

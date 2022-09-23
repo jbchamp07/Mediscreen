@@ -1,10 +1,9 @@
-package com.openclassrooms.diabetes.serviceTest;
+package com.openclassrooms.diabetes.service;
 
 import com.openclassrooms.diabetes.model.Note;
 import com.openclassrooms.diabetes.model.Patient;
 import com.openclassrooms.diabetes.proxies.NoteProxy;
 import com.openclassrooms.diabetes.proxies.PatientProxy;
-import com.openclassrooms.diabetes.service.DataService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
