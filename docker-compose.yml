@@ -10,6 +10,8 @@ services:
     restart: always
     volumes:
       - db_data:/var/liv/mysql
+    networks:
+      - consumer-producer
 
   databasemongodb:
     image: "mongo:latest"
@@ -27,6 +29,12 @@ services:
     ports:
       - "8080:8080"
     restart: always
+    depends_on:
+      - diabetes
+      - notes
+      - patient
+    networks:
+      - consumer-producer
 
   diabetes:
     image: diabetes
@@ -36,6 +44,11 @@ services:
     ports:
       - "9003:9003"
     restart: always
+    depends_on:
+      - notes
+      - patient
+    networks:
+      - consumer-producer
 
   notes:
     image: notes
@@ -47,6 +60,8 @@ services:
     depends_on:
       - "databasemongodb"
     restart: always
+    networks:
+      - consumer-producer
 
   patient:
     image: patient
@@ -58,6 +73,11 @@ services:
     depends_on:
       - "databasemysql"
     restart: always
+    networks:
+      - consumer-producer
 
 volumes:
   db_data: {}
+
+networks:
+  consumer-producer:
