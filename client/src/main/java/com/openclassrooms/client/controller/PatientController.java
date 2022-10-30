@@ -5,6 +5,7 @@ import com.openclassrooms.client.proxies.PatientProxy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -53,29 +54,32 @@ public class PatientController {
     }
 
     @PostMapping("/patient/add")
-    public String add(@ModelAttribute PatientBean patient, Model model){
+    public ModelAndView add(@ModelAttribute PatientBean patient, Model model){
         patientProxy.add(patient);
         model.addAttribute("message","patient added");
         List<PatientBean> patientsList = patientProxy.PatientsList();
         model.addAttribute("patientsList",patientsList);
-        return "patient/list";
+
+        return new ModelAndView("redirect:/patient/list");
     }
 
     @PostMapping("/patient/update")
-    public String update(@ModelAttribute PatientBean patient, Model model){
+    public ModelAndView update(@ModelAttribute PatientBean patient, Model model){
         patientProxy.update(patient);
         model.addAttribute("message","patient updated");
         List<PatientBean> patientsList = patientProxy.PatientsList();
         model.addAttribute("patientsList",patientsList);
-        return "patient/list";
+
+        return new ModelAndView("redirect:/patient/list");
     }
 
     @PostMapping("/patient/delete")
-    public String delete(@ModelAttribute PatientBean patient, Model model){
+    public ModelAndView delete(@ModelAttribute PatientBean patient, Model model){
         patientProxy.delete(patient.getId());
         model.addAttribute("message","patient deleted");
         List<PatientBean> patientsList = patientProxy.PatientsList();
         model.addAttribute("patientsList",patientsList);
-        return "patient/list";
+
+        return new ModelAndView("redirect:/patient/list");
     }
 }

@@ -4,7 +4,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name = "microservice-diabete", url = "localhost:9003")
+@FeignClient(name = "microservice-diabete", url = "diabetes:9003")
 public interface DiabeteProxy {
 
     @GetMapping("/assess")
