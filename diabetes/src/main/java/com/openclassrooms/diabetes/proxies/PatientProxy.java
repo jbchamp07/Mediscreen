@@ -5,7 +5,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name = "microservice-patient", url = "patient:9001")
+@FeignClient(name = "microservice-patient", url = "localhost:9001")
 public interface PatientProxy {
 
     @GetMapping("/patient")

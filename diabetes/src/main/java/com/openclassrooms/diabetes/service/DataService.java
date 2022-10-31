@@ -43,7 +43,8 @@ public class DataService {
 
     private void calculateRisk() {
 
-        int age = Date.from(Instant.now()).getYear() + 1900 - Integer.valueOf(patient.getDob().substring(6));
+        //int age = Date.from(Instant.now()).getYear() + 1900 - Integer.valueOf(patient.getDob().substring(6));
+        int age = Date.from(Instant.now()).getYear() + 1900 - Integer.valueOf(patient.getDob().substring(0,3));
 
         switch (patient.getSex()){
             case "M":
