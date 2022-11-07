@@ -60,7 +60,7 @@ public class PatientController {
         List<PatientBean> patientsList = patientProxy.PatientsList();
         model.addAttribute("patientsList",patientsList);
 
-        return new ModelAndView("redirect:/patient/list");
+        return new ModelAndView("redirect:/");
     }
 
     @PostMapping("/patient/update")
@@ -70,7 +70,7 @@ public class PatientController {
         List<PatientBean> patientsList = patientProxy.PatientsList();
         model.addAttribute("patientsList",patientsList);
 
-        return new ModelAndView("redirect:/patient/list");
+        return new ModelAndView("redirect:/");
     }
 
     @PostMapping("/patient/delete")
@@ -80,6 +80,6 @@ public class PatientController {
         List<PatientBean> patientsList = patientProxy.PatientsList();
         model.addAttribute("patientsList",patientsList);
 
-        return new ModelAndView("redirect:/patient/list");
+        return new ModelAndView("redirect:/");
     }
 }
