@@ -4,6 +4,9 @@ import com.openclassrooms.diabetes.model.Note;
 import com.openclassrooms.diabetes.model.Patient;
 import com.openclassrooms.diabetes.proxies.NoteProxy;
 import com.openclassrooms.diabetes.proxies.PatientProxy;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +15,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * The type Data service.
+ */
 @Service
+@Slf4j
 public class DataService {
+
+    /**
+     * The Logger.
+     */
+    Logger logger = LoggerFactory.getLogger(DataService.class);
 
     @Autowired
     private NoteProxy noteProxy;
@@ -24,31 +36,67 @@ public class DataService {
     private String risk = "Not calculated";
     private int nbTerms;
 
+    /**
+     * Evaluating with id string.
+     *
+     * @param patientId the patient id
+     * @return the string
+     */
     public String evaluatingWithId(int patientId){
         notes = noteProxy.getNotes(patientId);
-        patient = patientProxy.getAPatient(patientId);
-        calculateTerms();
-        calculateRisk();
+        if(notes.size() >= 1){
+            logger.info("note list : " + notes + " is found");
+        }else{
+            logger.error("note list : " + notes + " isn't found");
+        }
 
+        patient = patientProxy.getAPatient(patientId);
+
+        if(patient != null){
+            logger.info("patient : " + patient + " is found");
+        }else{
+            logger.error("patient : " + patient + " isn't found");
+        }
+
+        calculateTerms();
+        logger.info("patient terms are calculated : " + nbTerms);
+        calculateRisk();
+        logger.info("patient risk is : " + risk);
         return risk;
     }
+
+    /**
+     * Evaluating with name string.
+     *
+     * @param familyName the family name
+     * @return the string
+     */
     public String evaluatingWithName(String familyName){
         patient = patientProxy.patientByFamily(familyName);
+        if(patient != null){
+            logger.info("patient : " + patient + " is found");
+        }else{
+            logger.error("patient : " + patient + " isn't found");
+        }
         notes = noteProxy.getNotes(patient.getId());
+        if(notes.size() >= 1){
+            logger.info("note list : " + notes + " is found");
+        }else{
+            logger.error("note list : " + notes + " isn't found");
+        }
         calculateTerms();
+        logger.info("patient terms are calculated : " + nbTerms);
         calculateRisk();
-
+        logger.info("patient risk is : " + risk);
         return risk;
     }
 
     private void calculateRisk() {
 
-        //int age = Date.from(Instant.now()).getYear() + 1900 - Integer.valueOf(patient.getDob().substring(6));
         int age = Date.from(Instant.now()).getYear() + 1900 - Integer.valueOf(patient.getDob().substring(0,3));
 
         switch (patient.getSex()){
             case "M":
-                //TODO
                 if(age < 30){
                     if(nbTerms < 3){
                         risk = "None";

@@ -17,6 +17,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
+/**
+ * The type Patient service test.
+ */
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class PatientServiceTest {
@@ -27,6 +30,9 @@ public class PatientServiceTest {
     private PatientRepository patientRepository;
     private Patient patient;
 
+    /**
+     * Start.
+     */
     @BeforeAll
     public void start(){
 
@@ -44,7 +50,9 @@ public class PatientServiceTest {
     }
 
 
-
+    /**
+     * Get a patient by id test.
+     */
     @Test
     public void getAPatientByIdTest(){
 
@@ -53,6 +61,9 @@ public class PatientServiceTest {
 
     }
 
+    /**
+     * Patient list test.
+     */
     @Test
     public void patientListTest(){
         List<Patient> list = new ArrayList<>();
@@ -61,6 +72,9 @@ public class PatientServiceTest {
         assertEquals(1,patientService.patientList().size());
     }
 
+    /**
+     * Add patient test.
+     */
     @Test
     public void addPatientTest(){
         when(patientRepository.save(patient)).thenReturn(patient);
@@ -69,6 +83,9 @@ public class PatientServiceTest {
         assertEquals("addressTest",patientService.getAPatientById(1).getAddress());
     }
 
+    /**
+     * Update patient test.
+     */
     @Test
     public void updatePatientTest(){
         patient.setSex("F");
@@ -78,6 +95,10 @@ public class PatientServiceTest {
         assertEquals("F",patientService.getAPatientById(1).getSex());
         patient.setSex("M");
     }
+
+    /**
+     * Delete patient test.
+     */
     @Test
     public void deletePatientTest(){
 
@@ -85,6 +106,10 @@ public class PatientServiceTest {
         verify(patientRepository,times(1)).delete(patient);
 
     }
+
+    /**
+     * Patient by family test.
+     */
     @Test
     public void patientByFamilyTest(){
         when(patientRepository.findByFamily(patient.getFamily())).thenReturn(patient);

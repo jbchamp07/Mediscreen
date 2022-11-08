@@ -4,6 +4,9 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
+/**
+ * The type Patient.
+ */
 @Data
 public class Patient {
 

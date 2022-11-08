@@ -4,6 +4,9 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
+/**
+ * The type Note bean.
+ */
 @Data
 public class NoteBean {
 

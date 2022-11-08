@@ -5,6 +5,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
+/**
+ * The type Patient bean.
+ */
 @Data
 public class PatientBean {
     private int id;

@@ -22,6 +22,9 @@ import static org.springframework.data.mongodb.core.FindAndModifyOptions.options
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
 
+/**
+ * The type Note service test.
+ */
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class NoteServiceTest {
@@ -34,6 +37,9 @@ public class NoteServiceTest {
     private MongoOperations mongoOperations;
     private Note note;
 
+    /**
+     * Start.
+     */
     @BeforeAll
     public void start(){
         note = new Note();
@@ -44,6 +50,9 @@ public class NoteServiceTest {
         MockitoAnnotations.openMocks(this);
     }
 
+    /**
+     * Get next sequence test.
+     */
     @Test
     public void getNextSequenceTest(){
         /*CustomSequences counter = new CustomSequences();
@@ -57,6 +66,9 @@ public class NoteServiceTest {
         assertEquals(1,noteService.getNextSequence("customSequencesTest"));*/
     }
 
+    /**
+     * Save note test.
+     */
     @Test
     public void saveNoteTest(){
         //TODO
@@ -71,6 +83,9 @@ public class NoteServiceTest {
 */
     }
 
+    /**
+     * Update note test.
+     */
     @Test
     public void updateNoteTest(){
 
@@ -84,6 +99,9 @@ public class NoteServiceTest {
     }
 
 
+    /**
+     * Note by id test.
+     */
     @Test
     public void noteByIdTest(){
 
@@ -94,6 +112,9 @@ public class NoteServiceTest {
         assertEquals("noteTest",noteService.noteById(note.getPatientId()).get(0).getNote());
     }
 
+    /**
+     * Delete note test.
+     */
     @Test
     public void deleteNoteTest(){
 
@@ -103,6 +124,9 @@ public class NoteServiceTest {
     }
 
 
+    /**
+     * Get a note test.
+     */
     @Test
     public void getANoteTest(){
 

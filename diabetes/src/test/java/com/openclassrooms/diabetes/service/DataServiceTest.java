@@ -18,6 +18,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
+/**
+ * The type Data service test.
+ */
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class DataServiceTest {
@@ -32,6 +35,9 @@ public class DataServiceTest {
     private Note note;
 
 
+    /**
+     * Start.
+     */
     @BeforeAll
     public void start(){
         note = new Note();
@@ -47,6 +53,9 @@ public class DataServiceTest {
         MockitoAnnotations.openMocks(this);
     }
 
+    /**
+     * Evaluating with id test none.
+     */
     @Test
     public void evaluatingWithIdTestNone(){
 
@@ -58,6 +67,9 @@ public class DataServiceTest {
 
     }
 
+    /**
+     * Evaluating with name test none.
+     */
     @Test
     public void evaluatingWithNameTestNone(){
 
@@ -69,6 +81,9 @@ public class DataServiceTest {
 
     }
 
+    /**
+     * Evaluating with id test early onset.
+     */
     @Test
     public void evaluatingWithIdTestEarlyOnset(){
 
@@ -81,6 +96,9 @@ public class DataServiceTest {
 
     }
 
+    /**
+     * Evaluating with name test early onset.
+     */
     @Test
     public void evaluatingWithNameTestEarlyOnset(){
 

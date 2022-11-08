@@ -8,6 +8,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
+/**
+ * The type Note.
+ */
 @Data
 @Document
 public class Note {

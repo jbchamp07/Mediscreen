@@ -11,17 +11,33 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
+/**
+ * The type Note controller.
+ */
 @Controller
 public class NoteController {
 
     private final NoteProxy noteProxy;
     private final PatientProxy patientProxy;
 
+    /**
+     * Instantiates a new Note controller.
+     *
+     * @param noteProxy    the note proxy
+     * @param patientProxy the patient proxy
+     */
     public NoteController(NoteProxy noteProxy, PatientProxy patientProxy) {
         this.noteProxy = noteProxy;
         this.patientProxy = patientProxy;
     }
 
+    /**
+     * Note list string.
+     *
+     * @param patientId the patient id
+     * @param model     the model
+     * @return the string
+     */
     @GetMapping("/notes")
     public String noteList(@RequestParam int patientId, Model model) {
         List<NoteBean> notesList = noteProxy.getNotes(patientId);
@@ -31,6 +47,14 @@ public class NoteController {
         return "note/list";
 
     }
+
+    /**
+     * Add form string.
+     *
+     * @param patientId the patient id
+     * @param model     the model
+     * @return the string
+     */
     @GetMapping("/note/add")
     public String addForm(@RequestParam int patientId, Model model) {
         PatientBean patient = patientProxy.getAPatient(patientId);
@@ -38,6 +62,14 @@ public class NoteController {
         model.addAttribute("note", new NoteBean());
         return "note/add";
     }
+
+    /**
+     * Update form string.
+     *
+     * @param id    the id
+     * @param model the model
+     * @return the string
+     */
     @GetMapping("/note/update")
     public String updateForm(@RequestParam int id, Model model) {
         NoteBean note = noteProxy.updateNoteById(id);
@@ -47,6 +79,14 @@ public class NoteController {
         return "note/update";
 
     }
+
+    /**
+     * Delete form string.
+     *
+     * @param id    the id
+     * @param model the model
+     * @return the string
+     */
     @GetMapping("/note/delete")
     public String deleteForm(@RequestParam int id, Model model) {
         NoteBean note = noteProxy.deleteNoteById(id);
@@ -55,6 +95,13 @@ public class NoteController {
 
     }
 
+    /**
+     * Add model and view.
+     *
+     * @param note  the note
+     * @param model the model
+     * @return the model and view
+     */
     @PostMapping("/note/add")
     public ModelAndView add(@ModelAttribute NoteBean note, Model model){
 
@@ -69,6 +116,13 @@ public class NoteController {
         return new ModelAndView("redirect:/notes?patientId=" + note.getPatientId());
     }
 
+    /**
+     * Update model and view.
+     *
+     * @param note  the note
+     * @param model the model
+     * @return the model and view
+     */
     @PostMapping("/note/update")
     public ModelAndView update(@ModelAttribute NoteBean note, Model model){
 
@@ -83,6 +137,13 @@ public class NoteController {
         return new ModelAndView("redirect:/notes?patientId=" + note.getPatientId());
     }
 
+    /**
+     * Delete model and view.
+     *
+     * @param note  the note
+     * @param model the model
+     * @return the model and view
+     */
     @PostMapping("/note/delete")
     public ModelAndView delete(@ModelAttribute NoteBean note, Model model){
 
